@@ -4,10 +4,9 @@ public class bulletproof extends Player{
         super(name, role);
         super.wakeupAtNight = false;
     }
-
-//    public String bulletproof() {
-//        return (super.name);
-//    }
+    public bulletproof(String name){
+        super(name);
+    }
 
     public int getShield() {
         return shield;
