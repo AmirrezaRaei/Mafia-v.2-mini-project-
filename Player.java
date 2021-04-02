@@ -1,6 +1,6 @@
-public abstract class Player {
-    public String name;
-    protected String role;
+public class Player {
+    public String name ;
+    protected String role ;
 
     protected int vote_gained = 0;
 
@@ -12,6 +12,9 @@ public abstract class Player {
     public Player(String name, String role) {
         this.name = name;
         this.role = role;
+    }
+    public Player(String name){
+        this.name = name;
     }
 
     //Getter & setter
