@@ -1,4 +1,4 @@
-public class option {
+public class  option {
     protected int villagerCounter = 0;
     protected int mafiaCounter = 0;
     protected int jokerCounter = 0;
@@ -15,8 +15,8 @@ public class option {
     // special people
     protected String joker;
     protected String lastNightTarget;
-    protected String mafiaTarget1 = null;
-    protected String mafiaTarget2 = null;
+    protected String mafiaTarget1 = "";
+    protected String mafiaTarget2 = "";
 
     public int getTotalPlayer() {
         return totalPlayer;
