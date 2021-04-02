@@ -1,8 +1,11 @@
 public class detective extends Player{
     protected boolean useAbility = false;
-    protected String playerChoose;
+    protected String playerChoose = "";
     public detective(String name, String role) {
         super(name, role);
         super.wakeupAtNight = true;
+    }
+    public detective(String name){
+        super(name);
     }
 }
