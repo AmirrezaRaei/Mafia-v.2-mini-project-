@@ -38,10 +38,12 @@ public class Game {
                                 getGameState();
                                 break;
                             case "day":
+                                System.out.println("everyone please wake up");
                                 Day();
                                 System.out.println("please enter night");
                                 break;
                             case "night":
+                                System.out.println("everyone please go to sleep");
                                 Night();
                                 System.out.println("please enter day");
                                 break;
@@ -62,7 +64,6 @@ public class Game {
                 "\n" + "Have Fun Time");
         System.out.println("Dude Are you ready ?");
         System.out.println("please enter create_game");
-
     }
 
     public static void createGame() {
@@ -262,8 +263,6 @@ public class Game {
         resetAbility();
         resetVoteGained();
         op.Day = false;
-
-        System.out.println("everyone please go to sleep");
     }
 
     public static void Night() {
@@ -335,7 +334,6 @@ public class Game {
         } while (!order.equals("end_night"));
         mafiaVoteResult();
         op.Day = true;
-        System.out.println("everyone please wake up");
     }
 
 
