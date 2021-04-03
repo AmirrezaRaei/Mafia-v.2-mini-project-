@@ -33,11 +33,19 @@ public class Game {
                     gameStart();
                     while (!flag) {
                         order = input.next();
-                        if (order.equals("get_game_state")) {
-                            getGameState();
+                        switch (order){
+                            case "get_game_state":
+                                getGameState();
+                                break;
+                            case "day":
+                                Day();
+                                System.out.println("please enter night");
+                                break;
+                            case "night":
+                                Night();
+                                System.out.println("please enter day");
+                                break;
                         }
-                        Day();
-                        Night();
                     }
                     break;
                 case "get_game_state":
@@ -208,7 +216,8 @@ public class Game {
             }
         }
         do {
-            System.out.println("please enter new order");
+            System.out.println("if any player want vote please enter vote");
+            System.out.println("if not please enter end_vote");
             order = input.next();
             if (order.equals("end_vote")) {
                 break;
@@ -227,6 +236,7 @@ public class Game {
             if (!flag) {
                 System.out.println("user not joined");
             }
+            System.out.println("please enter new order");
         } while (!order.equals("end_vote"));
         // see who is going to dead
         int temp = dayVoteResult();
@@ -267,7 +277,8 @@ public class Game {
             }
         }
         do {
-            System.out.println("please enter name");
+            System.out.println("if any player want vote or use ability please enter player name");
+            System.out.println("if not please enter end_vote");
             order = input.next();
             flag = false;
             if (order.equals("end_night")) {
@@ -298,6 +309,7 @@ public class Game {
                                     System.out.println("doctor please wake up");
                                     ability(players[i].role);
                                     System.out.println("doctor please go to sleep");
+                                    break;
                                 case "mafia":
                                     System.out.println("mafia please wake up");
                                     voteAtNight(players[i]);
