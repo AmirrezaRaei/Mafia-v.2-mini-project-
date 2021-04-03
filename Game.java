@@ -537,6 +537,10 @@ public class Game {
                 if (doc.playerChoose.equals(op.mafiaTarget1)) {
                     return;
                 } else {
+                    if (op.mafiaTarget1.equals(bullet.name) && bullet.shield == 1){
+                        bullet.shield = 0;
+                        return;
+                    }
                     op.lastNightTarget = op.mafiaTarget1;
                     index = foundPlayer(op.lastNightTarget);
                     players[index].is_alive = false;
@@ -544,11 +548,19 @@ public class Game {
                 }
             } else {
                 if (op.mafiaTarget1.equals(doc.playerChoose)) {
+                    if (op.mafiaTarget2.equals(bullet.name) && bullet.shield == 1){
+                        bullet.shield = 0;
+                        return;
+                    }
                     op.lastNightTarget = op.mafiaTarget2;
                     index = foundPlayer(op.lastNightTarget);
                     players[index].is_alive = false;
                     op.someoneDead = true;
                 } else if (op.mafiaTarget2.equals(doc.playerChoose)) {
+                    if (op.mafiaTarget1.equals(bullet.name) && bullet.shield == 1){
+                        bullet.shield = 0;
+                        return;
+                    }
                     op.lastNightTarget = op.mafiaTarget1;
                     index = foundPlayer(op.lastNightTarget);
                     players[index].is_alive = false;
@@ -559,6 +571,7 @@ public class Game {
                 }
             }
         }
+        return;
     }
 
     public static void voteAtDay(Player player) {
