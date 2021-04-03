@@ -31,6 +31,7 @@ public class Game {
                     break;
                 case "start_game":
                     gameStart();
+
                     while (!flag) {
                         order = input.next();
                         switch (order){
@@ -181,6 +182,7 @@ public class Game {
         }
 //        Day();
         op.gameStarted = true;
+        System.out.println("please enter day");
         return;
     }
 
@@ -213,11 +215,11 @@ public class Game {
             showWinner();
             // see silencer use her ability or not
             if (silen.useAbility) {
-                System.out.println("silenced" + silen.playerChoose);
+                System.out.println("silencer silenced " + silen.playerChoose);
             }
         }
         do {
-            System.out.println("if any player want vote please enter vote");
+            System.out.println("if any player want vote please enter player name");
             System.out.println("if not please enter end_vote");
             order = input.next();
             if (order.equals("end_vote")) {
@@ -277,7 +279,7 @@ public class Game {
         }
         do {
             System.out.println("if any player want vote or use ability please enter player name");
-            System.out.println("if not please enter end_vote");
+            System.out.println("if not please enter end_night");
             order = input.next();
             flag = false;
             if (order.equals("end_night")) {
@@ -524,7 +526,7 @@ public class Game {
         if (votee1 > votee2) {
             op.mafiaTarget2 = "";
         }
-        if (op.mafiaTarget1 == "") {
+        if (op.mafiaTarget1 == "" || votee1 == 0) {
             return;
         }
         // now we want see doctor save anyone or not
@@ -636,7 +638,7 @@ public class Game {
                 }
             }
         }
-        if (votee1 > votee2 || target2 == "") {
+        if ((votee1 > votee2 || target2 == "") && votee1 != 0) {
             killWillBeDead = target1;
             op.someoneDead = true;
             return foundPlayer(killWillBeDead);
