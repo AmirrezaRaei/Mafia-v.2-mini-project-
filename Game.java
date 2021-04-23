@@ -31,23 +31,24 @@ public class Game {
                     break;
                 case "start_game":
                     gameStart();
-
-                    while (!flag) {
-                        order = input.next();
-                        switch (order){
-                            case "get_game_state":
-                                getGameState();
-                                break;
-                            case "day":
-                                System.out.println("everyone please wake up");
-                                Day();
-                                System.out.println("please enter night");
-                                break;
-                            case "night":
-                                System.out.println("everyone please go to sleep");
-                                Night();
-                                System.out.println("please enter day");
-                                break;
+                    if (op.gameStarted) {
+                        while (!flag) {
+                            order = input.next();
+                            switch (order) {
+                                case "get_game_state":
+                                    getGameState();
+                                    break;
+                                case "day":
+                                    System.out.println("everyone please wake up");
+                                    Day();
+                                    System.out.println("please enter night");
+                                    break;
+                                case "night":
+                                    System.out.println("everyone please go to sleep");
+                                    Night();
+                                    System.out.println("please enter day");
+                                    break;
+                            }
                         }
                     }
                     break;
@@ -342,6 +343,7 @@ public class Game {
     public static void resetVoteGained() {
         for (int i = 0; i < op.getTotalPlayer(); i++) {
             players[i].vote_gained = 0;
+            players[i].voted = false;
         }
     }
 
@@ -549,7 +551,7 @@ public class Game {
                 if (doc.playerChoose.equals(op.mafiaTarget1)) {
                     return;
                 } else {
-                    if (op.mafiaTarget1.equals(bullet.name) && bullet.shield == 1){
+                    if (op.mafiaTarget1.equals(bullet.name) && bullet.shield == 1) {
                         bullet.shield = 0;
                         return;
                     }
@@ -560,7 +562,7 @@ public class Game {
                 }
             } else {
                 if (op.mafiaTarget1.equals(doc.playerChoose)) {
-                    if (op.mafiaTarget2.equals(bullet.name) && bullet.shield == 1){
+                    if (op.mafiaTarget2.equals(bullet.name) && bullet.shield == 1) {
                         bullet.shield = 0;
                         return;
                     }
@@ -569,7 +571,7 @@ public class Game {
                     players[index].is_alive = false;
                     op.someoneDead = true;
                 } else if (op.mafiaTarget2.equals(doc.playerChoose)) {
-                    if (op.mafiaTarget1.equals(bullet.name) && bullet.shield == 1){
+                    if (op.mafiaTarget1.equals(bullet.name) && bullet.shield == 1) {
                         bullet.shield = 0;
                         return;
                     }
@@ -651,7 +653,7 @@ public class Game {
         if (op.mafiaCounter == 0) {
             System.out.println("villagers won the game");
             System.exit(0);
-        } else if (op.mafiaCounter >= op.villagerCounter) {
+        } else if (op.mafiaCounter >= op.villagerCounter + op.jokerCounter) {
             System.out.println("mafias won the game");
             System.exit(0);
         }
@@ -663,7 +665,6 @@ public class Game {
         return;
     }
 
-
     public static int foundPlayer(String name) { // found player index in players array
         for (int i = 0; i < op.getTotalPlayer(); i++) {
             if (name.equals(players[i].name)) {
@@ -672,6 +673,4 @@ public class Game {
         }
         return 0;
     }
-
-
 }
